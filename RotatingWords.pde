@@ -3,12 +3,13 @@ class RotatingWords implements Scene
   // will be set in constructor
   String name;
   // additional parameters specific for the scene
-  String[] palabras = {"sin poder hacer nada","ahora", "el horror","sin aviso", "sin tiempo de reaccion"};
-  float [] angulitos = {0.005,0.007,0.022,0.009,0.011};
+  String[] palabras = {"sin poder","ahora", "el horror","sin aviso", "sin tiempo"};
+ // float [] angulitos = {0.005,0.007,0.022,0.009,0.011};
+  float [] angulitos = {0.5,0.3,1.2,0.9,0.1};
   float [] angulitosNuevos = {0,0,0,0,0};
   PFont f;
-  float overlayAlpha = 10;
-  int radius = 10;
+  float overlayAlpha = 255;
+  int radius = 20;
 
   public RotatingWords(String na)
   {
@@ -22,24 +23,43 @@ class RotatingWords implements Scene
     f=loadFont("GFSNeohellenic-Bold-48.vlw");
     textFont(f);
     textAlign(LEFT); 
+    background(0);
+    fill(255);
+    //ellipse(width/2,height/2, this.radius+500,this.radius+500);  
+
   };
 
   void drawScene(){
+    //background(0);
     // darker or heller
-    fill(0, overlayAlpha);
+    fill(255, this.overlayAlpha);
     noStroke();
-    rect(0,0,width,height);
-    // Translate to the mouse pointes
-    translate(mouseX,mouseY);  
-       
+    //ellipse(width/2,height/2, this.radius+500,this.radius+500);   
+    ellipse(width/2,height/2, 600, 600);   
+
+    stroke(0);
+    fill(0);
+    strokeWeight(4);
+    beginShape(POINTS);
+    for (int a = 0; a < 360; a+=6) {
+      float angle = radians(a);
+      float x = width/2 + cos(angle) * 270;
+      float y = height/2 + sin(angle) * 270;
+      vertex(x, y);
+    }
+    endShape();
+    //fill(255);
+    //ellipse(mouseX,mouseY,this.radius+500,this.radius+500);   
+
     for(int i=0;i<palabras.length;i++){
       pushMatrix();
-        fill(255);
-        rotate(angulitosNuevos[i]);
+        translate(width/2,height/2); 
+        rotate(radians(angulitosNuevos[i]));
         text(palabras[i],this.radius,0); 
       popMatrix();
       //TODO add some modulo to avoid big nmbers
       angulitosNuevos[i] += angulitos[i];
+      angulitosNuevos[i] = angulitosNuevos[i] % 360;
     } 
   };
 
@@ -48,9 +68,9 @@ class RotatingWords implements Scene
     // overlayAlpha between 5 and 255
     if (k == "UP") this.overlayAlpha = min(this.overlayAlpha+5,255);
     if (k == "DOWN") this.overlayAlpha = max(this.overlayAlpha-5, 0);
-    // radius between 10 and 100
-    if (k == "RIGHT") this.radius = min(this.radius+5,100);
-    if (k == "LEFT") this.radius = max(this.radius-5,10);
+    // radius between 10 and x
+    if (k == "RIGHT") this.radius += 5;
+    if (k == "LEFT") this.radius = max(this.radius-5,20);
     
   };
 }
