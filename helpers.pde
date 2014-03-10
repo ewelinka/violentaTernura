@@ -80,9 +80,9 @@ class ParticleManager{
           PVector o = other.getLocation();
           int a = int(map(d,0,SQD,25,0));
           beginShape(LINES);          
-          stroke(100,0,0);
+          stroke(0,0,100);
           vertex(p.pos.x, p.pos.y);
-          stroke(255,0,0);
+          stroke(0,0,255);
           vertex(o.x, o.y);
           endShape();
         }

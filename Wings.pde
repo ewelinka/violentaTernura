@@ -5,7 +5,7 @@ class BlackWings implements Scene
   ParticleManager particles;
 
   
-  public BlackWings(String na)
+  public Wings(String na)
   {
     name = na;
   }
@@ -13,6 +13,9 @@ class BlackWings implements Scene
   void closeScene(){};
   void initialScene(){
     background(0);
+    fill(0,0,255);
+    noStroke();
+    ellipse(width/2,height/2, 300, 300);
     particles = new ParticleManager(); 
   };
   void drawScene(){

@@ -31,8 +31,9 @@ class SceneManager{
     //scenes[3].initialScene();
     scenes[5] = new Repeller("repi");
    // scenes[4].initialScene();
-    scenes[6] = new BlackWings("BlackWings");
-    //scenes[5].initialScene();    
+    scenes[6] = new Wings("Wings");
+    //scenes[5].initialScene();  
+    scenes[7] = new Arrows("Arrows");  
     actualScene = scenes[0];
 
   }

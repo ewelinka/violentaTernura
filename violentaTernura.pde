@@ -6,7 +6,8 @@ FWorld world;
 
 void setup(){
  // size(1024, 768,OPENGL);
-  size(displayWidth, displayHeight, P3D);
+  //size(displayWidth, displayHeight, P3D);
+  size(800, 600 , P3D);
 
 
   manager = new SceneManager();  
@@ -43,6 +44,7 @@ void keyReleased(){
   if (key == '4') manager.activate(4);
   if (key == '5') manager.activate(5);
   if (key == '6') manager.activate(6);
+  if (key == '7') manager.activate(7);
 }
 
 void drawGlobalAlpha(){

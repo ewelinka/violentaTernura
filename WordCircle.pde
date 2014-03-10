@@ -1,7 +1,8 @@
 class WordCircle implements Scene
 {   
   String name;
-  String message= "la mente del hombre esta diseñada para sobrevivir";
+  String message= "La mente del hombre esta diseñada para sobrevivir";
+  String message2= "A cada pensamiento lo acompaña el universo";
   PFont f;
   // The radius of a circle
   //float radius = 250;
@@ -11,11 +12,8 @@ class WordCircle implements Scene
 
   int cx, cy;
   float clockRadius = min(width, height) / 2;
-  float secondsRadius = clockRadius * 0.72;
-  float minutesRadius = clockRadius * 0.60;
-  float hoursRadius = clockRadius * 0.50;
-
-  float radius = secondsRadius;
+  float radius = clockRadius * 0.70;
+  float smallerRadius = this.radius - 20;
 
   public WordCircle(String na)
   {
@@ -49,20 +47,8 @@ class WordCircle implements Scene
     //     vertex(x, y);
     //   }
     // endShape();
-     // Angles for sin() and cos() start at 3 o'clock;
-    // subtract HALF_PI to make them start at the top
-    float s = map(second(), 0, 60, 0, TWO_PI) - HALF_PI;
-    float m = map(minute() + norm(second(), 0, 60), 0, 60, 0, TWO_PI) - HALF_PI; 
-    float h = map(hour() + norm(minute(), 0, 60), 0, 24, 0, TWO_PI * 2) - HALF_PI;
-    
-    // Draw the hands of the clock
-    strokeWeight(2);
-    line(cx, cy, cx + cos(s) * secondsRadius, cy + sin(s) * secondsRadius);
-    strokeWeight(4);
-    line(cx, cy, cx + cos(m) * minutesRadius, cy + sin(m) * minutesRadius);
-    strokeWeight(6);
-    line(cx, cy, cx + cos(h) * hoursRadius, cy + sin(h) * hoursRadius);
-    // Start in the center and draw the circle
+
+    // Start in the center and draw the first circle
     pushMatrix();
     translate(width/2, height/2);
     //to make words rotate
@@ -95,6 +81,41 @@ class WordCircle implements Scene
       arclength += w/2;
     }
     popMatrix();
+
+    // Start in the center and draw the second circle
+    pushMatrix();
+    translate(width/2, height/2);
+    //to make words rotate
+    rotate(radians(360-rotation));
+    noFill();
+
+    // For every box
+    arclength = 0;
+    for (int i = 0; i < message2.length(); i++)
+    {
+      // Instead of a constant width, we check the width of each character.
+      //textSize(random(22,36));
+      char currentChar = message2.charAt(i);
+      float w = textWidth(currentChar);
+      // Each box is centered so we move half the width
+      arclength += w/2;
+      // Angle in radians is the arclength divided by the radius
+      // Starting on the left side of the circle by adding PI
+      float theta = PI + arclength / this.radius;    
+      pushMatrix();
+        // Polar to cartesian coordinate conversion
+        translate(this.smallerRadius*cos(theta), this.smallerRadius*sin(theta));
+        // Rotate the box
+        rotate(theta+PI/2); // rotation is offset by 90 degrees
+        // Display the character
+        fill(0);
+        text(currentChar,0,0);
+      popMatrix();
+      // Move halfway again
+      arclength += w/2;
+    }
+    popMatrix();
+
     rotation+=rotationBase;
     rotation = rotation % 360;
   };

@@ -5,7 +5,7 @@ class RotatingWords implements Scene
   // additional parameters specific for the scene
   String[] palabras = {"sin poder","ahora", "el horror","sin aviso", "sin tiempo"};
  // float [] angulitos = {0.005,0.007,0.022,0.009,0.011};
-  float [] angulitos = {0.5,0.3,1.2,0.9,0.1};
+  float [] angulitos = {0.125,0.075,0.3,0.225,0.025};
   float [] angulitosNuevos = {0,0,0,0,0};
   PFont f;
   float overlayAlpha = 255;
