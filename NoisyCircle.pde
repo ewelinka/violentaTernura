@@ -4,7 +4,7 @@ class NoisyCircle implements Scene
   String name;
   // additional parameters specific for the scene
   float radius = 300; 
-  float noiseVal = 0;
+  float noiseVal = 1;
   float x,y,lastX,lastY;
 
   public NoisyCircle(String na)
@@ -24,15 +24,14 @@ class NoisyCircle implements Scene
   void drawScene(){
     background(0);
     stroke(255,122);
+
     pushMatrix();
       translate(mouseX,mouseY);
-
       for (int i=0;i<360 ;i++ ) {
       //for (float i=0.01;i<6.3 ;i=i+0.01 ) {
         x = (this.radius +random(this.noiseVal*-1,this.noiseVal))* cos(i);
         y = (this.radius +random(this.noiseVal*-1,this.noiseVal)) * sin(i);
    
-
         line(this.lastX, this.lastY, this.x, this.y);   
         this.lastX = this.x;
         this.lastY = this.y;

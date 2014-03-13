@@ -12,6 +12,7 @@ class Wings implements Scene
 
   void closeScene(){};
   void initialScene(){
+    hint(ENABLE_OPTIMIZED_STROKE);
     background(0);
     particles = new ParticleManager(); 
   };

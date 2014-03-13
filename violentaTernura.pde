@@ -58,3 +58,6 @@ void drawGlobalAlpha(){
   noStroke();
   rect(0,0,width,height);
 }
+boolean sketchFullScreen() {
+  return true;
+}
