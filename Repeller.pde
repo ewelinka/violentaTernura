@@ -1,7 +1,7 @@
 class Repeller implements Scene
 {   
     String name;
-    FCircle repeller;
+    FBox repeller;
     
     int w,h;
   
@@ -36,12 +36,13 @@ class Repeller implements Scene
           world.add(b);
         }
       }
-
-      repeller = new FCircle(50);
+      PImage imagen = loadImage("violenta.png");
+      repeller = new FBox(imagen.width, imagen.height);
+      repeller.attachImage(imagen);
       repeller.setPosition(width/2, height/2);
-      repeller.setNoFill();
+      //repeller.setNoFill();
       //repeller.setNoStroke();
-      stroke(10);
+      //stroke(10);
       world.add(repeller); 
       world.step();
 

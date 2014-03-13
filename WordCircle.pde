@@ -12,7 +12,7 @@ class WordCircle implements Scene
 
   int cx, cy;
   float clockRadius = min(width, height) / 2;
-  float radius = clockRadius * 0.70;
+  float radius = clockRadius * 0.66;
   float smallerRadius = this.radius - 20;
 
   public WordCircle(String na)
@@ -23,7 +23,7 @@ class WordCircle implements Scene
 
   void closeScene(){};
   void initialScene(){
-    f = createFont("Georgia",40,true);
+    f=loadFont("CharterBT-BoldItalic-48.vlw");
     textFont(f);
     // The text must be centered!
     textAlign(CENTER);
@@ -101,7 +101,7 @@ class WordCircle implements Scene
       arclength += w/2;
       // Angle in radians is the arclength divided by the radius
       // Starting on the left side of the circle by adding PI
-      float theta = PI + arclength / this.radius;    
+      float theta = PI + arclength / this.smallerRadius;    
       pushMatrix();
         // Polar to cartesian coordinate conversion
         translate(this.smallerRadius*cos(theta), this.smallerRadius*sin(theta));

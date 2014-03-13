@@ -20,7 +20,7 @@ class RotatingWords implements Scene
   void closeScene(){};
 
   void initialScene(){
-    f=loadFont("GFSNeohellenic-Bold-48.vlw");
+    f=loadFont("CharterBT-BoldItalic-48.vlw");
     textFont(f);
     textAlign(LEFT); 
     background(0);

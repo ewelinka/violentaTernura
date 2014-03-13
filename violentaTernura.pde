@@ -6,8 +6,8 @@ FWorld world;
 
 void setup(){
  // size(1024, 768,OPENGL);
-  //size(displayWidth, displayHeight, P3D);
-  size(800, 600 , P3D);
+  size(displayWidth, displayHeight, P3D);
+  //size(800, 600 , P3D);
 
 
   manager = new SceneManager();  
@@ -29,8 +29,14 @@ void keyReleased(){
   if (keyCode == LEFT) manager.pressedKey("LEFT");
   if (keyCode == RIGHT) manager.pressedKey("RIGHT");
 
-  if (key == 'm') globalAlpha = max(globalAlpha-15, 0);
-  if (key == 'n') globalAlpha = min(globalAlpha+15,255);
+  if (key == 'm'){
+    globalAlpha = max(globalAlpha-15, 0);
+    println("globalAlpha "+globalAlpha);
+  }
+  if (key == 'n') {
+    globalAlpha = min(globalAlpha+15,255);
+    println("globalAlpha "+globalAlpha);
+  }
 
   if (key == 'r') manager.pressedKey(key+"");
   if (key == 'g') manager.pressedKey(key+"");

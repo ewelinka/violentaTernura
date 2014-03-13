@@ -1,4 +1,4 @@
-class BlackWings implements Scene
+class Wings implements Scene
 {   
   String name;
 
@@ -13,12 +13,11 @@ class BlackWings implements Scene
   void closeScene(){};
   void initialScene(){
     background(0);
-    fill(0,0,255);
-    noStroke();
-    ellipse(width/2,height/2, 300, 300);
     particles = new ParticleManager(); 
   };
   void drawScene(){
+    fill(0,0,122);
+    ellipse(mouseX, mouseY, 4,4);
     if(mousePressed) particles.add(mouseX, mouseY);   
     particles.update();
     particles.draw();
