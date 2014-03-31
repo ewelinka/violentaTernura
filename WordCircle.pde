@@ -1,8 +1,8 @@
 class WordCircle implements Scene
 {   
   String name;
-  String message= "La mente del hombre esta diseñada para sobrevivir";
-  String message2= "A cada pensamiento lo acompaña el universo";
+  String message2= "La mente del hombre esta diseñada para sobrevivir";
+  String message= "A cada pensamiento lo acompaña el universo";
   PFont f;
   // The radius of a circle
   //float radius = 250;
@@ -13,7 +13,7 @@ class WordCircle implements Scene
   int cx, cy;
   float clockRadius = min(width, height) / 2;
   float radius = clockRadius * 0.66;
-  float smallerRadius = this.radius - 20;
+  float smallerRadius = this.radius - 25;
 
   public WordCircle(String na)
   {
@@ -29,6 +29,7 @@ class WordCircle implements Scene
     textAlign(CENTER);
     cx = width/2;
     cy = height/2;
+    radius = radius + 80;
     //smooth();
   };
   void drawScene(){
@@ -38,15 +39,6 @@ class WordCircle implements Scene
     // minute-points
     stroke(0);
     fill(0);
-    // strokeWeight(4);
-    // beginShape(POINTS);
-    //   for (int a = 0; a < 360; a+=6) {
-    //     float angle = radians(a);
-    //     float x = width/2 + cos(angle) * 270;
-    //     float y = height/2 + sin(angle) * 270;
-    //     vertex(x, y);
-    //   }
-    // endShape();
 
     // Start in the center and draw the first circle
     pushMatrix();
@@ -125,8 +117,14 @@ class WordCircle implements Scene
     if (k == "UP") this.overlayAlpha = min(this.overlayAlpha+5,255);
     if (k == "DOWN") this.overlayAlpha = max(this.overlayAlpha-5, 0);
     // radius between 10 and 100
-    if (k == "RIGHT") this.radius += 5;
-    if (k == "LEFT") this.radius = max(this.radius-5,10);
+    if (k == "RIGHT") {
+      this.radius += 0.5;
+      println("radius "+this.radius);
+    }
+    if (k == "LEFT"){
+      this.radius = max(this.radius-0.5,10);
+      println("radius "+this.radius);
+    } 
   };
   String getSceneName(){return this.name;};
 

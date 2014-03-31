@@ -3,8 +3,8 @@ class NoisyCircle implements Scene
   // will be set in constructor
   String name;
   // additional parameters specific for the scene
-  float radius = 300; 
-  float noiseVal = 1;
+  float radius = 250; 
+  float noiseVal = 7;
   float x,y,lastX,lastY;
 
   public NoisyCircle(String na)
@@ -17,7 +17,7 @@ class NoisyCircle implements Scene
 
   void initialScene(){
     background(0);
-    strokeWeight(2);
+    strokeWeight(3);
     hint(DISABLE_OPTIMIZED_STROKE);
   };
 

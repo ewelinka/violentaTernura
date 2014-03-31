@@ -3,7 +3,9 @@ class Spotlight implements Scene
   String name;
   PImage img;
   float radius = 300;
-  int threshold = 0;
+  int threshold = 30;
+  boolean isPulseActive;
+  float pulsesize = 7;
 
   public Spotlight(String na)
   {
@@ -12,7 +14,9 @@ class Spotlight implements Scene
   }
 
   void closeScene(){};
-  void initialScene(){};
+  void initialScene(){
+    isPulseActive = true;
+  };
   void drawScene(){
     background(0);
     for (int x = 0; x < width; x++) {
@@ -21,7 +25,8 @@ class Spotlight implements Scene
         int loc = x + y*width;
 
         // Calculate an amount to change brightness based on proximity to the mouse
-        float maxdist = radius;//dist(0,0,width,height);
+        float maxdist = radius;
+        if(isPulseActive) maxdist = radius + pulsesize;
         float d = dist(x, y, mouseX, mouseY);
         if(d<maxdist){
           float adjustalpha = 255*(maxdist-d)/maxdist;
@@ -40,7 +45,22 @@ class Spotlight implements Scene
     }
     img.updatePixels();
     image(img,0,0);  
+    pulsesize*=-1;
   };
+
+  void startPulse(){
+    isPulseActive= !isPulseActive;
+  }  
+  void addPulse(){
+    if(pulsesize<0) pulsesize-=1 ;
+    else pulsesize=pulsesize+=1 ;
+    println("pulsesize " + pulsesize);
+  }  
+  void killPulse(){
+    if(pulsesize<0) pulsesize+=1 ;
+    else pulsesize=pulsesize-=1 ;
+    println("pulsesize " + pulsesize);
+  }
 
   void onPressedKey(String k){
 
@@ -49,7 +69,11 @@ class Spotlight implements Scene
     // radius between 10 and 100
     if (k == "RIGHT") this.radius += 10;
     if (k == "LEFT") this.radius = max(10,this.radius-=10);
-    
+
+    if (k == "start") startPulse();
+    if (k == "add") addPulse();
+    if (k == "kill") killPulse();
+ 
   };    
 
   String getSceneName(){return this.name;};

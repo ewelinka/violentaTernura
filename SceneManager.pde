@@ -23,7 +23,7 @@ class SceneManager{
     scenes[0].initialScene();
     scenes[1] = new Wings("Wings"); 
     //scenes[0].initialScene();
-    scenes[2] = new Arrows("Arrows"); 
+    scenes[2] = new Worms("Worms"); 
     //scenes[1].initialScene();
     scenes[3] = new RotatingWords("rota"); 
     //scenes[2].initialSceRotatingWords("rota"); ne();

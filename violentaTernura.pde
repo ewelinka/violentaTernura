@@ -7,7 +7,7 @@ FWorld world;
 void setup(){
  // size(1024, 768,OPENGL);
   size(displayWidth, displayHeight, P3D);
-  //size(800, 600 , P3D);
+ // size(800, 600 , P3D);
 
 
   manager = new SceneManager();  
@@ -30,17 +30,19 @@ void keyReleased(){
   if (keyCode == RIGHT) manager.pressedKey("RIGHT");
 
   if (key == 'm'){
-    globalAlpha = max(globalAlpha-15, 0);
+    globalAlpha = max(globalAlpha-5, 0);
     println("globalAlpha "+globalAlpha);
   }
   if (key == 'n') {
-    globalAlpha = min(globalAlpha+15,255);
+    globalAlpha = min(globalAlpha+5,255);
     println("globalAlpha "+globalAlpha);
   }
 
-  if (key == 'r') manager.pressedKey(key+"");
-  if (key == 'g') manager.pressedKey(key+"");
-  if (key == 'b') manager.pressedKey(key+"");
+  if (key == 'a') manager.pressedKey("add");  
+  if (key == 's') manager.pressedKey("start"); 
+  if (key == 'k') manager.pressedKey("kill");
+  if (key == 'b') globalAlpha = 255;
+  if (key == 'l') globalAlpha = 0;
 
   //TODO: if is number i pass it as scene to activate
   if (key == '0') manager.activate(0);
